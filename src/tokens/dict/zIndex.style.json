@@ -8,6 +8,9 @@
     },
     "dialog": {
       "value": 3
+    },
+    "searchResult": {
+      "value": 4
     }
   }
 }
