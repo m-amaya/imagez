@@ -44,7 +44,7 @@ export const {
     }),
     // states
     focusRing: (color: keyof typeof palette) => ({
-      outlineColor: rgba(palette[color], 0.35),
+      outlineColor: rgba(palette[color], 0.5),
       outlineStyle: "solid",
       outlineWidth: 3,
     }),
