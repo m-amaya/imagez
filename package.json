@@ -1,0 +1,70 @@
+{
+  "name": "imagez",
+  "version": "0.1.0",
+  "description": "Upload your photos",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m-amaya/imagez.git"
+  },
+  "homepage": "https://m-amaya.github.io/imagez/",
+  "private": true,
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "scripts": {
+    "dev": "craco start",
+    "build": "yarn build:tokens && craco build",
+    "build:tokens": "style-dictionary build --config ./sd.config.json",
+    "test": "craco test",
+    "eject": "react-scripts eject",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
+  },
+  "dependencies": {
+    "@stitches/react": "^1.2.8",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "hex-rgb": "^5.0.0",
+    "i18next": "^21.8.13",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "react-i18next": "^11.18.0",
+    "typescript": "^4.4.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "@craco/craco": "^6.4.5",
+    "@types/jest": "^28.1.4",
+    "@types/node": "^16.7.13",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.6",
+    "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
+    "eslint": "^8.19.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-storybook": "^0.5.13",
+    "gh-pages": "^4.0.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^28.1.2",
+    "jest-environment-jsdom": "^28.1.2",
+    "prettier": "^2.7.1",
+    "style-dictionary": "^3.7.1",
+    "tsconfig-paths-webpack-plugin": "^3.5.2",
+    "typescript-transform-paths": "^3.3.1"
+  }
+}

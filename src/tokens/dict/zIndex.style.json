@@ -1,0 +1,13 @@
+{
+  "zIndex": {
+    "header": {
+      "value": 1
+    },
+    "overlay": {
+      "value": 2
+    },
+    "dialog": {
+      "value": 3
+    }
+  }
+}
