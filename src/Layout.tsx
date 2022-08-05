@@ -35,15 +35,17 @@ const Layout: FC = () => {
         <BrowserRouter>
           <>
             <Routes>
-              <Route path='/login' element={<LoginPage />} />
-              <Route
-                path='*'
-                element={
-                  <RequireAuth>
-                    <HomePage />
-                  </RequireAuth>
-                }
-              />
+              <Route path='/imagez'>
+                <Route
+                  index
+                  element={
+                    <RequireAuth>
+                      <HomePage />
+                    </RequireAuth>
+                  }
+                />
+                <Route path='login' element={<LoginPage />} />
+              </Route>
             </Routes>
             <ToastStyled position='top-right' autoClose={false} closeOnClick />
           </>

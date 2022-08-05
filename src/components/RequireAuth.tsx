@@ -9,7 +9,7 @@ const RequireAuth: FC<PropsWithChildren> = ({ children }) => {
   const location = useLocation();
 
   if (!isLoggedIn) {
-    return <Navigate to='/login' state={{ from: location }} replace />;
+    return <Navigate to='/imagez/login' state={{ from: location }} replace />;
   }
 
   return <>{children}</>;

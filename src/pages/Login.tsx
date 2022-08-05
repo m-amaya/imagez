@@ -39,7 +39,7 @@ const Login: FC = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      navigate("/");
+      navigate("/imagez");
     }
   }, [isLoggedIn]);
 
