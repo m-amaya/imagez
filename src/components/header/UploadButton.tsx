@@ -1,32 +1,49 @@
-import { HTMLAttributes, FC } from "react";
+import { FC, useRef, useState } from "react";
+import { toast } from "react-toastify";
 
 import { styled } from "~/styles";
+import Button from "./Button";
+import UploadToast from "./UploadToast";
 
-const Button = styled("button", {
-  textStyle: "body",
-  backgroundColor: "$pink",
-  border: "none",
-  borderRadius: 8,
-  cursor: "pointer",
-  fontWeight: "$bold",
-  height: 40,
-  outlineWidth: 0,
-  paddingLeft: 12,
-  paddingRight: 12,
-  smoothTransition: ["background-color", "outline-width"],
-  "&:hover": {
-    backgroundColor: "$pinkDarker",
-  },
-  "&:active": {
-    backgroundColor: "$pinkDarkest",
-  },
-  "&:focus": {
-    focusRing: "pink",
-  },
+const FileInput = styled("input", {
+  display: "none",
 });
 
-const UploadButton: FC<HTMLAttributes<HTMLButtonElement>> = (attrs) => {
-  return <Button {...attrs}>Upload</Button>;
+const UploadButton: FC = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const resetForm = () => {
+    if (formRef.current) {
+      formRef.current.reset();
+    }
+  };
+
+  return (
+    <form ref={formRef}>
+      <FileInput
+        id='file-image'
+        type='file'
+        name='file-image'
+        accept='image/*'
+        onChange={(e) => {
+          const fileList = e.currentTarget.files;
+
+          if (fileList && fileList.length) {
+            const file = fileList[0];
+            toast(
+              <UploadToast filename={file.name} onCancel={() => resetForm()} />,
+              {
+                onClose: () => resetForm(),
+              },
+            );
+          }
+        }}
+      />
+      <Button kind='primary' as='label' htmlFor='file-image'>
+        Upload
+      </Button>
+    </form>
+  );
 };
 
 export default UploadButton;
