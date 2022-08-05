@@ -1,11 +1,17 @@
 import type { FirebaseApp } from "firebase/app";
-import { getStorage, listAll, ref, StorageReference } from "firebase/storage";
+import {
+  getStorage,
+  listAll,
+  ref,
+  StorageReference,
+  uploadBytes,
+} from "firebase/storage";
 import { createContext, FC, useContext, useState } from "react";
 
 import type { ReactChildren, StatusType } from "~/types";
 
 interface ImagesStore {
-  ref: StorageReference;
+  imagesRef: StorageReference;
   list: {
     status: StatusType;
     data: StorageReference[];
@@ -42,13 +48,23 @@ export const ImagesProvider: FC<{
   };
 
   const upload = (image: File) => {
-    console.log("upload image:", image);
+    setUploadStatus("LOADING");
+
+    uploadBytes(ref(imagesRef, image.name), image)
+      .then(() => {
+        setUploadStatus("SUCCESS");
+        getList();
+      })
+      .catch((error) => {
+        console.error(error);
+        setUploadStatus("ERROR");
+      });
   };
 
   return (
     <ImagesContext.Provider
       value={{
-        ref: imagesRef,
+        imagesRef,
         list: {
           status: listStatus,
           data: imagesList,

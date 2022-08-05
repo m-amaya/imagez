@@ -14,7 +14,7 @@ const HeaderWrapper = styled(Wrapper, {
 });
 
 const LogoWrapper = styled("div", {
-  alignContent: "flex-end",
+  alignItems: "center",
   display: "flex",
   justifyContent: "space-between",
 });

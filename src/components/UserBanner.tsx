@@ -9,7 +9,7 @@ const Container = styled("div", {
   display: "flex",
   justifyContent: "flex-end",
   padding: 8,
-  position: "absolute",
+  position: "sticky",
   top: 0,
   right: 0,
   width: "100%",
