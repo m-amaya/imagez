@@ -1,7 +1,7 @@
 import { FC, MouseEventHandler } from "react";
 
 import { styled } from "~/styles";
-import Button from "./Button";
+import Button from "../Button";
 
 const Toast = styled("div", {
   display: "grid",

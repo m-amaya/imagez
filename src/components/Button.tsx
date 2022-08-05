@@ -9,6 +9,7 @@ const Button = styled("button", {
   display: "inline-flex",
   fontWeight: "$bold",
   height: 40,
+  justifyContent: "center",
   outlineWidth: 0,
   paddingLeft: 12,
   paddingRight: 12,

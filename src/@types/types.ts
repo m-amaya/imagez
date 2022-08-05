@@ -6,6 +6,7 @@ import tokens from "~/tokens";
 export type ReactChildren = ReactElement | ReactElement[];
 export type StitchesCSS = CSS<typeof config>;
 export type FontStyleType = keyof typeof tokens.fontSizes;
+export type StatusType = "IDLE" | "LOADING" | "SUCCESS" | "ERROR";
 
 export interface PropsWithChild {
   children?: ReactElement;

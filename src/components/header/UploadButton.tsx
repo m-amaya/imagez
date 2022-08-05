@@ -1,8 +1,8 @@
-import { FC, useRef, useState } from "react";
+import { FC, useRef } from "react";
 import { toast } from "react-toastify";
 
+import Button from "~/components/Button";
 import { styled } from "~/styles";
-import Button from "./Button";
 import UploadToast from "./UploadToast";
 
 const FileInput = styled("input", {
