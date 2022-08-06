@@ -8,13 +8,13 @@ import ImageGrid from "./ImageGrid";
 
 const Content: FC = () => {
   const {
-    list: { data },
+    list: { dataFiltered },
   } = useImagesContext();
 
   return (
     <Wrapper as='main'>
       <ImageGrid>
-        {data.map((image) => (
+        {dataFiltered.map((image) => (
           <Image key={genKey("image")} name={image.name} />
         ))}
       </ImageGrid>

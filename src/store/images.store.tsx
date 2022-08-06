@@ -6,7 +6,7 @@ import {
   StorageReference,
   uploadBytes,
 } from "firebase/storage";
-import { createContext, FC, useContext, useState } from "react";
+import { createContext, FC, useContext, useMemo, useState } from "react";
 
 import type { ReactChildren, StatusType } from "~/types";
 
@@ -15,7 +15,9 @@ interface ImagesStore {
   list: {
     status: StatusType;
     data: StorageReference[];
+    dataFiltered: StorageReference[];
     get: () => void;
+    filter: (value: string) => void;
   };
   upload: {
     status: StatusType;
@@ -34,6 +36,11 @@ export const ImagesProvider: FC<{
   const [imagesList, setImagesList] = useState<StorageReference[]>([]);
   const [listStatus, setListStatus] = useState<StatusType>("IDLE");
   const [uploadStatus, setUploadStatus] = useState<StatusType>("IDLE");
+  const [filterValue, setFilterValue] = useState("");
+  const imagesFiltered = useMemo(
+    () => imagesList.filter((image) => image.name.match(filterValue)),
+    [imagesList, filterValue],
+  );
 
   const getList = () => {
     setListStatus("LOADING");
@@ -46,6 +53,8 @@ export const ImagesProvider: FC<{
         setListStatus("ERROR");
       });
   };
+
+  const filterList = (filterValue: string) => setFilterValue(filterValue);
 
   const upload = (image: File) => {
     setUploadStatus("LOADING");
@@ -68,7 +77,9 @@ export const ImagesProvider: FC<{
         list: {
           status: listStatus,
           data: imagesList,
+          dataFiltered: imagesFiltered,
           get: getList,
+          filter: filterList,
         },
         upload: {
           status: uploadStatus,

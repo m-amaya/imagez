@@ -4,7 +4,7 @@ import Wrapper from "~/components/Wrapper";
 import { styled } from "~/styles";
 import tokens from "~/tokens";
 
-import SearchInput from "./SearchInput";
+import Search from "./Search";
 import UploadButton from "./UploadButton";
 
 const HeaderWrapper = styled(Wrapper, {
@@ -30,7 +30,7 @@ const Header: FC = () => {
         <H1>imagez.</H1>
         <UploadButton />
       </LogoWrapper>
-      <SearchInput />
+      <Search />
     </HeaderWrapper>
   );
 };
