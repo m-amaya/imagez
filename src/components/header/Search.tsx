@@ -1,5 +1,6 @@
 import { FC, useEffect, useRef, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
 
 import { useImagesContext } from "~/store";
 import { styled } from "~/styles";
@@ -35,6 +36,16 @@ const SearchIcon = styled(FaSearch, {
   transform: "translateY(-50%)",
 });
 
+const CloseIcon = styled(IoMdClose, {
+  color: "$blueLighter",
+  cursor: "pointer",
+  fontSize: 26,
+  position: "absolute",
+  right: 16,
+  top: "50%",
+  transform: "translateY(-50%)",
+});
+
 const Input = styled("input", {
   textStyle: "bodyMd",
   backgroundColor: "transparent",
@@ -55,21 +66,26 @@ const List = styled("div", {
   borderBottomLeftRadius: 8,
   borderBottomRightRadius: 8,
   borderTop: "1px solid $blueDarkest",
-  display: "flex",
-  flexDirection: "column",
+  display: "grid",
+  maxHeight: 25 + 50 * 5,
+  overflowY: "auto",
+  paddingTop: 8,
   position: "absolute",
   width: "100%",
   zIndex: "$dialog",
 });
 
 const ListItem = styled("button", {
+  alignItems: "center",
   backgroundColor: "transparent",
   border: 0,
   color: "$pureWhite",
   cursor: "pointer",
+  display: "flex",
   height: 50,
   padding: "0 16px",
   textAlign: "left",
+  smoothTransition: ["background-color"],
   "&:hover": {
     backgroundColor: "$blueLighter",
   },
@@ -111,8 +127,15 @@ const Search: FC = () => {
           placeholder='Search...'
           onChange={(e) => setInputValue(e.currentTarget.value)}
           onFocus={() => setShowMenu(true)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              setShowMenu(false);
+              e.currentTarget.blur();
+            }
+          }}
           value={inputValue}
         />
+        {inputValue && <CloseIcon onClick={() => setInputValue("")} />}
       </InputWrapper>
       {showMenu && (
         <List>
@@ -120,7 +143,10 @@ const Search: FC = () => {
             dataFiltered.map((image) => (
               <ListItem
                 key={genKey("opt")}
-                onClick={() => setInputValue(image.name)}
+                onClick={() => {
+                  setInputValue(image.name);
+                  setShowMenu(false);
+                }}
               >
                 {image.name}
               </ListItem>
